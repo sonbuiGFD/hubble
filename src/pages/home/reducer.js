@@ -7,7 +7,7 @@ const initialState = {
     loading: false,
   },
   filter: {
-    state: 'all',
+    state: 'open',
     page: 1,
     per_page: 10,
   },

@@ -2,9 +2,7 @@ import { actionCreator, actionTryCatchCreator } from 'utils';
 import { getRepoIssues, getRepoIssueDetail } from 'services';
 
 export const GET_REPO_ISSUES_ACTION = actionCreator('GET_REPO_ISSUES_ACTION');
-export const getRepoIssueAction = () => async (dispatch, getState) => {
-  const { filter } = getState().home;
-
+export const getRepoIssueAction = (state = 'all') => async (dispatch) => {
   const onPending = () => {
     dispatch({
       type: GET_REPO_ISSUES_ACTION.PENDING,
@@ -25,7 +23,7 @@ export const getRepoIssueAction = () => async (dispatch, getState) => {
   };
 
   actionTryCatchCreator({
-    service: getRepoIssues(filter.state),
+    service: getRepoIssues(state),
     onPending,
     onSuccess,
     onError,
