@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { grantType, HostAPIENV } from 'config';
-import { getData } from 'utils';
+import { defautToken, grantType, HostAPIENV } from 'config';
 
 export const request = async ({
   host = '',
@@ -13,16 +12,14 @@ export const request = async ({
   _grantType,
   onUploadProgress,
 }) => {
-  const user = getData('_u');
-  const userJson = user ? JSON.parse(user) || {} : {};
-  const token = _token || userJson.access_token;
+  const token = _token || defautToken;
   const resquestGrantType = _grantType || grantType;
   const uploadProgress = onUploadProgress || (() => {});
 
-  const HostAPI = HostAPIENV;
+  const HostAPI = host || HostAPIENV;
 
   const res = await axios({
-    url: `${host || HostAPI}${url}`,
+    url: `${HostAPI}${url}`,
     method,
     data,
     params,

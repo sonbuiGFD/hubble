@@ -1,3 +1,3 @@
-import { useBabelRc, override } from 'customize-cra';
+const { useBabelRc, override } = require('customize-cra');
 
-export default override(useBabelRc());
+module.exports = override(useBabelRc());

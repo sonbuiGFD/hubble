@@ -24,15 +24,6 @@ export const getData = (key) => {
   return res;
 };
 
-export const formatDate = (d) => {
-  if (!d) {
-    return '';
-  }
-  const date = new Date(d);
-
-  return format(date, 'dd/MM/yyyy');
-};
-
 export const actionCreator = (actionName, extraField = []) => {
   const actionType = {
     NAME: actionName,
@@ -83,22 +74,6 @@ export const truncates = (string, maxLength = 50) => {
 };
 
 export const IsIOSDevice = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-
-export const mapDataByIds = (list = [], field) => {
-  const res = reduce(
-    list,
-    (total, item) => {
-      total.ids.push(item[field]);
-      total.items[item[field]] = item;
-      return total;
-    },
-    {
-      ids: [],
-      items: {},
-    },
-  );
-  return res;
-};
 
 export const formatDurationTime = (seconds) => {
   const h = Math.floor(seconds / 3600);

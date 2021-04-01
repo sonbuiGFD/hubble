@@ -1,9 +1,12 @@
 import { request } from 'utils/request';
+import { USER, REPO } from 'config';
 
-const AUTHENTICATE_TOKEN = '/api/authenticate/token';
-export const authenticateTokenService = (token) =>
+const GET_REPO_ISSUES = `/repos/${USER}/${REPO}/issues`;
+export const getRepoIssues = (state) =>
   request({
-    url: AUTHENTICATE_TOKEN,
-    method: 'POST',
-    data: { token },
+    url: GET_REPO_ISSUES,
+    method: 'GET',
+    params: {
+      state: state || '',
+    },
   });
