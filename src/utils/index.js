@@ -1,4 +1,5 @@
 import { toastr } from 'react-redux-toastr';
+import { format } from 'date-fns';
 
 let UUID_COUNT = 0;
 export const getUniqueID = () => {
@@ -24,6 +25,15 @@ export const getData = (key) => {
   return res;
 };
 
+export const formatDate = (d) => {
+  if (!d) {
+    return '';
+  }
+  const date = new Date(d);
+
+  return format(date, 'dd/MM/yyyy');
+};
+
 export const actionCreator = (actionName, extraField = []) => {
   const actionType = {
     NAME: actionName,
@@ -42,13 +52,14 @@ export const actionTryCatchCreator = async ({ service, onPending, onSuccess, onE
   const isIgnoreError = ignoreError || false;
   try {
     if (onPending) onPending();
-    const { status, data } = await service;
+    // const { status, data } = await service;
+    const res = await service;
 
-    if (status === 200) {
-      if (onSuccess) onSuccess(data);
-    } else {
-      throw String(`HTTP request with code ${status}`);
-    }
+    // if (status === 200) {
+    if (onSuccess) onSuccess(res);
+    // } else {
+    //   throw String(`HTTP request with code ${status}`);
+    // }
   } catch (error) {
     if (onError) onError(error);
     if (isIgnoreError) {

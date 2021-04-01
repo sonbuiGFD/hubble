@@ -1,0 +1,16 @@
+@import 'styles/variables.scss';
+
+.list_issues {
+	&__item {
+		border-radius: 6px;
+		background-color: #fff;
+		border: 0.5px solid #e5e5e5;
+		margin-bottom: 5px;
+		padding: 15px;
+	}
+
+	&__title {
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+}
