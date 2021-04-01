@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { getRepoIssueAction } from 'pages/home/action';
 
+import ListIssues from 'components/ListIssues';
+
 import './style.scss';
 
 const Home = ({ getRepoIssue, state }) => {
@@ -10,7 +12,11 @@ const Home = ({ getRepoIssue, state }) => {
     getRepoIssue(state);
   }, []);
 
-  return <main>this is home page</main>;
+  return (
+    <main>
+      <ListIssues />
+    </main>
+  );
 };
 
 const mapStateToProps = ({ home }) => ({
